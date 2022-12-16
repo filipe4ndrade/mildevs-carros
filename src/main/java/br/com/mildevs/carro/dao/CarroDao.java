@@ -19,7 +19,7 @@ public class CarroDao {
 	}
 
 	public boolean insereCarro(Carro carro) {
-		String sql = "INSERT INTO carros.carro(placa, cor, marca, modelo) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO public.carro(placa, cor, marca, modelo, vel_max) VALUES (?, ?, ?, ?,?)";
 
 		try {
 			PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -27,6 +27,7 @@ public class CarroDao {
 			stmt.setString(2, carro.getCor());
 			stmt.setString(3, carro.getMarca());
 			stmt.setString(4, carro.getModelo());
+			stmt.setDouble(5, carro.getVelMax());
 			stmt.execute();
 			stmt.close();
 			return true;
@@ -41,7 +42,7 @@ public class CarroDao {
 
 			List<Carro> carros = new ArrayList<Carro>();
 		
-			String sql = "SELECT * FROM carros.carro";
+			String sql = "SELECT * FROM public.carro";
 		
 			try {
 				PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -54,6 +55,8 @@ public class CarroDao {
 					carroRetornado.setCor(rs.getString("cor"));
 					carroRetornado.setMarca(rs.getString("marca"));
 					carroRetornado.setModelo(rs.getString("modelo"));
+					carroRetornado.setVelMax(rs.getDouble("vel_max"));
+					
 		
 					carros.add(carroRetornado);
 				}
@@ -68,7 +71,7 @@ public class CarroDao {
 
 	public Carro consultaCarro(String placa) {
 
-			String sql = "SELECT * FROM carros.carro where placa = ?";
+			String sql = "SELECT * FROM public.carro where placa = ?";
 		
 			try {
 				PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -82,6 +85,8 @@ public class CarroDao {
 					carroRetornado.setCor(rs.getString("cor"));
 					carroRetornado.setMarca(rs.getString("marca"));
 					carroRetornado.setModelo(rs.getString("modelo"));
+					carroRetornado.setVelMax(rs.getDouble("vel_max"));
+					
 		
 					return carroRetornado;
 				}
@@ -95,7 +100,7 @@ public class CarroDao {
 	}
 
 	public boolean removeCarro(String placa) {
-			String sql = "DELETE FROM carros.carro WHERE placa = ?";
+			String sql = "DELETE FROM public.carro WHERE placa = ?";
 		
 			try {
 				PreparedStatement stmt = this.conn.prepareStatement(sql);
