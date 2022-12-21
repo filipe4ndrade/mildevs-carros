@@ -1,7 +1,7 @@
 # mildevs-carros
 ## Exercício aplicando Maven e Hibernate
 
-1. Vamos criar um repositório para o nosso novo projeto e cloná-lo localmente
+1. Vamos criar um repositório para o nosso novo projeto e cloná-lo localmente.
 
 2. Nosso projeto agora será um projeto Maven, vamos criá-lo no Eclipse.
 
